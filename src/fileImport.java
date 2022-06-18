@@ -16,23 +16,27 @@ public class fileImport{
     // sets path of object's file
     public void setPath(String arg){
         this.path = arg;
+        // System.out.println(this.path);
     }
 
     // creates file object attribute
     public void setInputFile(){
         this.inputFile = new File(this.path);
+        // System.out.println(this.inputFile);
     }
 
     // creates audio stream attribute
     public void setAudioStream(){
         try{
-            this.audioFile = AudioSystem.getAudioInputStream(inputFile);
+            this.audioFile = AudioSystem.getAudioInputStream(this.inputFile);
+            System.out.println("set audio stream");
         } catch (Exception e){
             e.printStackTrace();
         }
     }
 
     public String getPath(){
+        
         return this.path;
     }
 
@@ -45,16 +49,6 @@ public class fileImport{
     }
 
 
-    public static void main(String filePath) {
-        // inits object
-        fileImport fi = new fileImport();
-
-        // sets path and path-depenednt attributes
-        fi.setPath(filePath);
-        fi.setInputFile();
-        fi.setAudioStream();
-
-    }
 
        
 }

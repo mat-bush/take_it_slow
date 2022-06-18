@@ -80,20 +80,9 @@ public class streamData {
     }
 
     public void writeSamples(){
-        
+
     }
 
-    public static void main(AudioInputStream arg) {
-        streamData sd = new streamData();
-
-        // sets attributes 
-        sd.setAudioFile(arg);
-        sd.setFrameLength();
-        sd.setNumFrames();
-        sd.setBytes();
-        sd.setSongData();
-        sd.setBitSize();
-    }
 }
 
     
