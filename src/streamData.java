@@ -6,7 +6,7 @@ public class streamData {
     private AudioInputStream audioFile; // audio stream
     private int frameLength;
     private int numFrames;
-    private byte[] bytes;
+    private byte[] byteArr;
     private int songData;
     private int bitSize;
 
@@ -43,21 +43,21 @@ public class streamData {
         return numFrames;
     }
 
-    public void setBytes(){
+    public void setByteArr(){
         try {
-            this.bytes = new byte[this.frameLength * this.numFrames];
+            this.byteArr = new byte[this.frameLength * this.numFrames];
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public byte[] getBytes(){
-        return bytes;
+    public byte[] getByteArr(){
+        return byteArr;
     }
 
     public void setSongData(){
         try {
-            this.songData = audioFile.read(this.bytes);
+            this.songData = audioFile.read(this.byteArr);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,15 +1,18 @@
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.naming.spi.InitialContextFactoryBuilder;
 
 public class audioProcess{
     
     private streamData ds; 
-    private int[][] sampInt;
+    private int[][] SampByChan;
+    
+
     public static void main(String[] args) {
         audioProcess ap = new audioProcess();
         ap.Init("/Users/mathew/repos/take_it_slow/lib/media/sample_wav.wav");
-        ap.setSampInt();
+        ap.SetSampByChan();
     }
 
 
@@ -24,7 +27,7 @@ public class audioProcess{
         sd.setAudioFile(fi.getAudioFile());
         sd.setFrameLength();
         sd.setNumFrames();
-        sd.setBytes();
+        sd.setByteArr();
         sd.setSongData();
         sd.setBitSize();
 
@@ -33,12 +36,37 @@ public class audioProcess{
 
     }
 
-    public void setSampInt(){
-        this.sampInt = new int[ds.getAudioFile().getFormat().getChannels()][(int) ds.getAudioFile().getFrameLength()];
+    public void SetSampByChan(){
+        // inits the array of arrays that will hold audio data by channel
+        this.SampByChan = new int[this.ds.getAudioFile().getFormat().getChannels()][];
 
-        System.out.println(this.sampInt);
+        // establishes data variable
+        byte[] SampData = this.ds.getByteArr();
+
+        
+
+        for (int chn = 0; chn < this.ds.getAudioFile().getFormat().getChannels();){
+            int i = 0;
+            int[] chnsSamps = new int[SampData.length / this.ds.getAudioFile().getFormat().getChannels()];
+
+            for (int sampi = chn; sampi < SampData.length;){
+                int sampVal = (int) SampData[sampi];
+                chnsSamps[i] = sampVal;
+
+                sampi = sampi + this.ds.getAudioFile().getFormat().getChannels();
+                i++;
+                
+            }
+            SampByChan[chn] = chnsSamps;
+            System.out.println(chn);
+            chn++;
+        }
         
     }
 
-  
+    public int[][] getSampByChan(){
+        return this.SampByChan;
+    }
+
+   
 }
