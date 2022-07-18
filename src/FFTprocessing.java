@@ -9,14 +9,43 @@
 //                                               [t + ∆ ] , [array of frequencies], [array of amplitudes]]
 //  2) iterate through the array from step 1 and:
 //      a) round frequencies in array
+//         i) create method to round to desired accuracy: accomplished
 //  3) create new array w/ time, Amplitude, and radian values
-//      a) write to txt doc(s)
-//  4) grep for each unique time and pull lines w/ each rad value and amplitude at a given and sum
+//  4) write to txt doc(s)
+//  5) grep for each unique time and pull lines w/ each rad value and amplitude at a given and sum
 // 
 
 
 
 
 public class FFTprocessing {
-    
+// object that holds array from step one
+    private float[][][][] FFTdata;
+
+
+    // rounding method for 2ai 
+    public float[] roundToFloats(float[] floats, Double decPlaces){
+        
+        float[] roundedFloats = new float[floats.length];
+
+        // test for decPlaces input
+        if (decPlaces == 0){
+            for(int i = 0; i < floats.length; i++){
+                roundedFloats[i] = Math.round(floats[i]);
+            }
+        }
+        else if (decPlaces > 0) {
+            float scaleFactor = (float) Math.pow(10, decPlaces); 
+
+            for(int i = 0; i < floats.length; i++){
+                roundedFloats[i] = Math.round(floats[i] * scaleFactor) / scaleFactor;
+            }            
+        } else {
+            System.out.println("Error: decPlaces arguement must be greater than zero");
+        }
+
+        return roundedFloats;
+    }
+
+
 }
