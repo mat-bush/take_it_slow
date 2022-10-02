@@ -1,0 +1,2 @@
+10/02/22
+I am not satisified with consisnatncy of my work on this project. To help, I have decided this log with the goal making at least one log a week. I am concerned with feasability of my current audio processing design so I will go back to the drwaing board on that and come up with something 
